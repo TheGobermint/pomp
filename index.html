@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scottie Pumpin - The Meme Token</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Academic M54', 'sans-serif';
+    color: black;
+}
+
+/* Use a pseudo-element to apply the background image and filter */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('bolls.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Place this behind other elements */
+    /* Here's where you can apply filter without affecting other content */
+    filter: brightness(0.5) contrast(1.2); /* Example filter */
+    pointer-events: none; /* Allows clicks to pass through to underlying content */
+}
+        .header {
+           
+            font-family: 'Academic M54', 'sans-serif';
+            font-size: 2em;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            .header {
+                font-size: 1.5em; /* Adjust size for mobile */
+            }
+            .header img {
+                max-width: 100%; /* Ensure image fits within the header */
+               
+            }
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 10px;
+        }
+        .logo {
+            width: 500px;
+            height: auto;
+            margin-top: 30px;
+            border: 5px solid #061922; /* Bulls blue */
+            border-radius: 5%;
+        }
+        @media (max-width: 768px) {
+            .logo {
+                width: 100%; /* Adjust logo size for mobile */
+                max-width: 300px;
+            }
+        }
+        h1 {
+            font-family: 'Impact', sans-serif;
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #ff0000;
+            text-shadow: 2px 2px 0 black;
+        }
+        p {
+            font-size: 1.2em;
+            max-width: 600px;
+            background-color: #000000;
+            color: white;;
+            
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            margin: 20px 10px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #061922; /* Bulls blue */
+            color: #ff0000;;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 50px; /* More rounded for that playful look */
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #003366;
+        }
+        .footer {
+            position: fixed;
+            bottom: 10;
+            width: 100%;
+            background-color: #000000;
+            color: #F9A01B;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header"><img src="banner.png" alt="Scottie Pompin Banner" ></div>
+    <div class="container">
+        
+        <img class="logo" src="spomp.png" alt="Scottie Pippen NFT Image">
+        <h1><a style="color: white">Join the</a> $POMP</h1>
+        <p><a style="color: #ff0000; font-size: 2em;">Scottie Pompin:</a> <br> The GOAT of green candes, bold moves, and unapologetically bullish vibes. Here to redefine the meme token game with his iconic 'Bullish' drip and the swagger of a true market legend. Scottie Pompin dominates the charts like a slam dunk in the face of bears. No fluff, no gimmicks—just raw, unrelenting bullish energy. Get in, hold tight, and ride the wave.</p>
+        <a href="#" class="cta-button">Join Now</a>
+    </div>
+    <div class="footer">
+        <p>Get your Scottie Pompin gear - Join the community!</p>
+    </div>
+</body>
+</html>
