@@ -6,69 +6,75 @@
     <title>Scottie Pumpin - The Meme Token</title>
     <style>
         body {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-family: 'Academic M54', 'sans-serif';
-    color: black;
-}
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: 'Academic M54', 'sans-serif';
+            color: black;
+            overflow-y: auto;
+        }
 
-/* Use a pseudo-element to apply the background image and filter */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('bolls.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1; /* Place this behind other elements */
-    /* Here's where you can apply filter without affecting other content */
-    filter: brightness(0.5) contrast(1.2); /* Example filter */
-    pointer-events: none; /* Allows clicks to pass through to underlying content */
-}
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('bolls.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            filter: brightness(0.5) contrast(1.2);
+            pointer-events: none;
+        }
+
         .header {
-           
             font-family: 'Academic M54', 'sans-serif';
             font-size: 2em;
             text-transform: uppercase;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        
-        /* Media query for mobile devices */
+
         @media (max-width: 768px) {
             .header {
-                font-size: 1.5em; /* Adjust size for mobile */
+                font-size: 1.5em;
             }
             .header img {
-                max-width: 100%; /* Ensure image fits within the header */
-               
+                max-width: 100%;
             }
         }
+
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
+            justify-content: flex-start;
+            min-height: 100vh;
             padding: 10px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 60px;
         }
+
         .logo {
             width: 500px;
             height: auto;
             margin-top: 30px;
-            border: 5px solid #061922; /* Bulls blue */
+            border: 5px solid #061922;
             border-radius: 5%;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            perspective: 1000px;
         }
+
         @media (max-width: 768px) {
             .logo {
-                width: 100%; /* Adjust logo size for mobile */
+                width: 100%;
                 max-width: 300px;
             }
         }
+
         h1 {
             font-family: 'Impact', sans-serif;
             font-size: 3em;
@@ -76,51 +82,153 @@ body::before {
             color: #ff0000;
             text-shadow: 2px 2px 0 black;
         }
+
         p {
             font-size: 1.2em;
             max-width: 600px;
             background-color: #000000;
-            color: white;;
-            
+            color: white;
             padding: 5px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
             margin: 20px 10px;
         }
+
         .cta-button {
             display: inline-block;
             padding: 15px 30px;
-            background-color: #061922; /* Bulls blue */
-            color: #ff0000;;
+            background-color: #061922;
+            color: #ff0000;
             text-decoration: none;
             font-size: 1.2em;
-            border-radius: 50px; /* More rounded for that playful look */
+            border-radius: 50px;
             transition: background-color 0.3s;
         }
+
         .cta-button:hover {
             background-color: #003366;
         }
+
         .footer {
             position: fixed;
-            bottom: 10;
+            bottom: 0;
             width: 100%;
             background-color: #000000;
             color: #F9A01B;
             padding: 5px 0;
+            z-index: 0;
+        }
+
+        .crypto-ticker {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .crypto-ticker .ticker-content {
+            display: inline-block;
+            animation: ticker-scroll 30s linear infinite;
+        }
+
+        @keyframes ticker-scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .crypto-ticker .ticker-item {
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;
+        }
+
+        .social-icons a {
+            color: #ff0000; /* Red by default */
+            font-size: 32px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #4e9843; /* Green on hover */
         }
     </style>
+    <!-- Include Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="header"><img src="banner.png" alt="Scottie Pompin Banner" ></div>
-    <div class="container">
+    <audio autoplay loop>
+        <source src="pump-it-up.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="header"><img src="banner.png" alt="Scottie Pompin Banner"></div>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+        <a href="https://x.com/scottiepompin" target="_blank" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/scottiepompin" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://discord.gg/59ZS2RKaCG" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
         
-        <img class="logo" src="spomp.png" alt="Scottie Pippen NFT Image">
+    </div>
+
+    <div class="container">
+        <img class="logo" src="spomp.png" alt="Scottie Pippen NFT Image" id="interactive-image">
         <h1><a style="color: white">Join the</a> $POMP</h1>
-        <p><a style="color: #ff0000; font-size: 2em;">Scottie Pompin:</a> <br> The GOAT of green candes, bold moves, and unapologetically bullish vibes. Here to redefine the meme token game with his iconic 'Bullish' drip and the swagger of a true market legend. Scottie Pompin dominates the charts like a slam dunk in the face of bears. No fluff, no gimmicks—just raw, unrelenting bullish energy. Get in, hold tight, and ride the wave.</p>
+        <p><a style="color: #ff0000; font-size: 2em;">Scottie Pompin:</a> <br> The GOAT of green candles, bold moves, and unapologetically bullish vibes. Here to redefine the meme token game with his iconic 'Bullish' drip and the swagger of a true market legend. Scottie Pompin dominates the charts like a slam dunk in the face of bears. No fluff, no gimmicks—just raw, unrelenting bullish energy. Get in, hold tight, and ride the wave.</p>
         <a href="#" class="cta-button">Join Now</a>
     </div>
+
     <div class="footer">
-        <p>Get your Scottie Pompin gear - Join the community!</p>
+        <div class="crypto-ticker">
+            <div class="ticker-content">Loading...</div>
+        </div>
     </div>
+
+    <script>
+        async function fetchTopMemeCoins() {
+            const response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&per_page=20");
+            const coins = await response.json();
+
+            const tickerContent = coins
+                .map(coin => {
+                    const priceChange = coin.price_change_percentage_24h;
+                    const color = priceChange >= 0 ? "green" : "red";
+                    return `<span class="ticker-item" style="color: ${color};">${coin.symbol.toUpperCase()}: $${coin.current_price.toFixed(6)} </span>`;
+                })
+                .join("");
+
+            document.querySelector(".ticker-content").innerHTML = tickerContent + tickerContent; // Duplicate for seamless scrolling
+        }
+
+        // Fetch meme coin data on load
+        fetchTopMemeCoins();
+
+        // Update every 60 seconds
+        setInterval(fetchTopMemeCoins, 60000);
+
+        // Interactive rotation effect
+        const image = document.getElementById('interactive-image');
+        image.addEventListener('mousemove', (e) => {
+            const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = -y / 10; // Adjust for smoother rotation
+            const rotateY = x / 10;
+            image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        image.addEventListener('mouseleave', () => {
+            image.style.transform = 'rotateX(0) rotateY(0)';
+        });
+    </script>
 </body>
 </html>
