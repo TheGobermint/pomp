@@ -55,7 +55,7 @@
             min-height: 100vh;
             padding: 10px;
             position: relative;
-            z-index: 2; /* Ensures it's above the candlesticks */
+            z-index: 2;
             margin-bottom: 60px;
         }
 
@@ -66,18 +66,18 @@
             transform: translateX(-50%);
             width: 100%;
             display: flex;
-            justify-content: space-around; /* Spread out the candlesticks */
-            z-index: 0; /* Behind content */
+            justify-content: space-around;
+            z-index: 0;
             pointer-events: none;
         }
 
         .candlestick {
-            width: 30px; /* Wider candlesticks */
+            width: 30px;
             background-color: #4e9843;
-            margin: 0 15px; /* Increase space between candlesticks */
-            border-radius: 5px 5px 0 0; /* Rounded top */
+            margin: 0 15px;
+            border-radius: 5px 5px 0 0;
             transition: height 0.3s ease-out;
-            align-self: flex-end; /* Start from the bottom */
+            align-self: flex-end;
         }
 
         .logo {
@@ -142,25 +142,25 @@
         }
 
         .crypto-ticker {
-            position: fixed; /* Ensure it stays at the bottom */
+            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 40px; /* Explicit height for visibility */
-            background-color: rgba(0, 0, 0, 0.9); /* Slightly transparent background */
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.9);
             color: white;
             overflow: hidden;
             white-space: nowrap;
-            z-index: 10; /* Higher than candlestick-container */
+            z-index: 10;
             display: flex;
-            align-items: center; /* Vertically align ticker items */
+            align-items: center;
             padding: 0 10px;
-            box-sizing: border-box; /* Include padding in the width */
+            box-sizing: border-box;
         }
 
         .crypto-ticker .ticker-content {
             display: flex;
-            animation: ticker-scroll 23s linear infinite;
+            animation: ticker-scroll 60s linear infinite;
         }
 
         @keyframes ticker-scroll {
@@ -185,17 +185,15 @@
         }
 
         .social-icons a {
-            color: #ff0000; /* Red by default */
+            color: #ff0000;
             font-size: 32px;
             transition: color 0.3s;
         }
 
         .social-icons a:hover {
-            color: #4e9843; /* Green on hover */
+            color: #4e9843;
         }
     </style>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    
 </head>
 <body>
     <audio autoplay loop>
@@ -204,9 +202,7 @@
     </audio>
 
     <!-- Candlestick container -->
-    <div class="candlestick-container" id="candlestick-container">
-        <!-- Dynamically generated candlesticks will go here -->
-    </div>
+    <div class="candlestick-container" id="candlestick-container"></div>
 
     <div class="header"><img src="banner.png" alt="Scottie Pompin Banner"></div>
 
@@ -238,53 +234,59 @@
         for (let i = 0; i < numCandlesticks; i++) {
             const candlestick = document.createElement('div');
             candlestick.classList.add('candlestick');
-            const initialHeight = Math.random() * 50 + 20; // Random height between 20px and 70px
+            const initialHeight = Math.random() * 50 + 20;
             candlestick.style.height = `${initialHeight}px`;
             candlestickContainer.appendChild(candlestick);
         }
 
-        // Update candlestick heights on scroll
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const candlesticks = document.querySelectorAll('.candlestick');
             candlesticks.forEach((candlestick, index) => {
-                const growth = Math.min(400, scrollY / 3 + index * 69); // Increased growth limit
+                const growth = Math.min(400, scrollY / 3 + index * 69);
                 candlestick.style.height = `${growth}px`;
             });
         });
 
-        // Fetch and update the crypto ticker
-        async function fetchCryptoTicker() {
-            try {
-                const response = await fetch(
-                    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&per_page=20'
-                );
-                const coins = await response.json();
+        // Parody ticker data
+        const parodyTickers = [
+        { symbol: "WENLAMB", price: "$0.00069", joke: "🚗 Wen Lamborghini?!" },
+        { symbol: "APED", price: "$420.69", joke: "🦧 Apes together strong!" },
+        { symbol: "REKT", price: "$-99.99", joke: "💀 RIP portfolio." },
+        { symbol: "PAPERHND", price: "$0.01", joke: "🧻 Sold the dip, didn't ya?" },
+        { symbol: "10X", price: "$0.0001", joke: "📈 Up only, right?" },
+        { symbol: "DEGEN", price: "$69.00", joke: "🔥 Degens never sleep." },
+        { symbol: "FLOKI", price: "$0.00002", joke: "🐕 Floki's on Mars." },
+        { symbol: "RUGPULL", price: "$-100.00", joke: "🪵 Oh no, not again." },
+        { symbol: "COPE", price: "$0.99", joke: "🥲 Still holding." },
+        { symbol: "MOONER", price: "$1000.00", joke: "🌙 Moon mission confirmed!" },
+        { symbol: "BURNED", price: "$0🔥", joke: "🔥 Supply reduced. Price…not so much." },
+        { symbol: "EXITSCAM", price: "$0.0001", joke: "🚪 Left with your funds." },
+        { symbol: "TOKENOM", price: "$2.22", joke: "🍝 Pasta-powered tokenomics." },
+        { symbol: "BTFD", price: "$69.69", joke: "📉 Bought the dip. Again." },
+        { symbol: "YOLO", price: "$888.88", joke: "🎲 YOLO every cent!" },
+        { symbol: "SAFEMEME", price: "$0.0003", joke: "🛡️ Totally safe, we promise." },
+        { symbol: "HYPE", price: "$1.23", joke: "🎉 Overhyped and underdelivered." },
+        { symbol: "GIGACHUD", price: "$0.000005", joke: "Just BUY IT" },
+        { symbol: "NOEXIT", price: "$∞", joke: "🔒 Locked forever." },
+        { symbol: "WAGMI", price: "$777.77", joke: "🙌 We’re all gonna make it!" },
+        { symbol: "NICK", price: "$000.69", joke: "THE DEVS HAVE MISLED US AGAIN" }
+        ];
 
-                const tickerContent = coins
-                    .map(
-                        (coin) =>
-                            `<span class="ticker-item" style="color: ${
-                                coin.price_change_percentage_24h >= 0 ? 'green' : 'red'
-                            };">${coin.symbol.toUpperCase()}: $${coin.current_price.toFixed(
-                                6
-                            )} </span>`
-                    )
-                    .join('');
-
-                const tickerElement = document.querySelector('.crypto-ticker .ticker-content');
-                tickerElement.innerHTML = tickerContent; // Original content
-                tickerElement.innerHTML += tickerContent; // Duplicate content for seamless scrolling
-            } catch (error) {
-                console.error('Error fetching crypto data:', error);
-                document.querySelector('.crypto-ticker .ticker-content').innerHTML =
-                    `<span class="ticker-item" style="color: red;">Error loading ticker data.</span>`;
-            }
+        function populateParodyTicker() {
+            const tickerElement = document.querySelector('.crypto-ticker .ticker-content');
+            const parodyContent = parodyTickers
+                .map(
+                    (item, index) =>
+                        `<span class="ticker-item" style="color: ${
+                            index % 2 === 0 ? "green" : "red"
+                        };">${item.symbol}: ${item.price} ${item.joke}</span>`
+                )
+                .join('');
+            tickerElement.innerHTML = parodyContent + parodyContent;
         }
 
-        // Fetch ticker data on load and refresh every 60 seconds
-        fetchCryptoTicker();
-        setInterval(fetchCryptoTicker, 60000);
+        populateParodyTicker();
     </script>
 </body>
 </html>
