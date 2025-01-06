@@ -246,7 +246,7 @@
             const scrollY = window.scrollY;
             const candlesticks = document.querySelectorAll('.candlestick');
             candlesticks.forEach((candlestick, index) => {
-                const growth = Math.min(400, scrollY / 3 + index * 40); // Increased growth limit
+                const growth = Math.min(400, scrollY / 3 + index * 69); // Increased growth limit
                 candlestick.style.height = `${growth}px`;
             });
         });
@@ -270,18 +270,17 @@
                     )
                     .join('');
 
-                document.querySelector('.crypto-ticker .ticker-content').innerHTML =
-                    tickerContent + tickerContent; // Duplicate for seamless scrolling
+                const tickerElement = document.querySelector('.crypto-ticker .ticker-content');
+                tickerElement.innerHTML = tickerContent; // Original content
+                tickerElement.innerHTML += tickerContent; // Duplicate content for seamless scrolling
             } catch (error) {
                 console.error('Error fetching crypto data:', error);
-
-                // Fallback content in case of API error
                 document.querySelector('.crypto-ticker .ticker-content').innerHTML =
                     `<span class="ticker-item" style="color: red;">Error loading ticker data.</span>`;
             }
         }
 
-        // Fetch the ticker data on load and update every 60 seconds
+        // Fetch ticker data on load and refresh every 60 seconds
         fetchCryptoTicker();
         setInterval(fetchCryptoTicker, 60000);
     </script>
